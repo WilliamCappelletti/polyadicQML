@@ -86,16 +86,11 @@ class Classifier(quantumModel):
             'loss_grad',
             CE_grad if loss is CE_loss else None
         )
-        budget = kwargs.get('budget', 100)
         name = kwargs.get('name')
         save_path = kwargs.get('save_path')
 
         # Setting bitstrings
         self.set_bitstr(bitstr)
-
-        if not isinstance(budget, int):
-            raise TypeError("Invalid `budget` type")
-        self.__budget__ = budget
 
         self.__loss__ = loss
         self.__loss_grad__ = loss_grad

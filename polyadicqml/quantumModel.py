@@ -14,6 +14,8 @@ class quantumModel():
         nbshots_incr_delay = kwargs.get('nbshots_incr_delay')
         job_size = kwargs.get('job_size')
 
+        budget = kwargs.get('budget', 100)
+
         # Testing circuit and setting it
         self.set_circuit(circuit)
 
@@ -40,6 +42,11 @@ class quantumModel():
             self.nbshots_incr_delay = nbshots_incr_delay
 
         self.__set_nbshots_increment__(nbshots_increment)
+
+        # Test and set budget
+        if not isinstance(budget, int):
+            raise TypeError("Invalid `budget` type")
+        self.__budget__ = budget
 
         self.job_size = job_size
         self.nfev = 0
